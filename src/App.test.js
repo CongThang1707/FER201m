@@ -1,8 +1,17 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import { MemoryRouter } from 'react-router-dom';
+import React from 'react';
+import '@testing-library/jest-dom';
+import 'jsdom-global/register'; // import jsdom-global/register to set up jsdom globally
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+import Contact from './cinema/Contact';
+
+test('renders page component', () => {
+  render(
+    <MemoryRouter initialEntries={['/contact']}>
+      <Contact />
+    </MemoryRouter>
+  );
+  const linkElement = screen.getByText(/congthang@gmail.com/i);
   expect(linkElement).toBeInTheDocument();
 });
